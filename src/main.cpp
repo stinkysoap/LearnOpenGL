@@ -1,4 +1,4 @@
-#include <glad/glad.h>
+#include<glad/glad.h>
 #include <iostream>
 
 #include <GLFW/glfw3.h>
@@ -24,8 +24,15 @@ int main() {
   }
   glViewport(0, 0, 300, 200);
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+  //render Loop
   while (!glfwWindowShouldClose(window)) {
+      //input
       processInput(window);
+      //rendering commands here
+      glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+      glClear(GL_COLOR_BUFFER_BIT);
+
+      //check and call events and swap buffers
       glfwSwapBuffers(window);
       glfwPollEvents();
   }
