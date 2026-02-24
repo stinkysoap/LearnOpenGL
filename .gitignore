@@ -1,0 +1,23 @@
+build/
+Build_files/
+cmake-macos-build/
+_deps/
+
+# CMake / Ninja artifacts
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+*.ninja
+.ninja_deps
+.ninja_log
+
+# IDE / tooling
+.cache/
+.idea/
+.vscode/
+
+# OS cruft
+*.DS_Store
+
