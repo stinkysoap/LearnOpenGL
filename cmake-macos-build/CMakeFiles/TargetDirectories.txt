@@ -1,0 +1,4 @@
+/Users/m/LearnOpenGL/cmake-macos-build/CMakeFiles/glad.dir
+/Users/m/LearnOpenGL/cmake-macos-build/CMakeFiles/LearnOpenGL.dir
+/Users/m/LearnOpenGL/cmake-macos-build/CMakeFiles/edit_cache.dir
+/Users/m/LearnOpenGL/cmake-macos-build/CMakeFiles/rebuild_cache.dir
