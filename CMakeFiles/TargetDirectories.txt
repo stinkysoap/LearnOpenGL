@@ -1,0 +1,4 @@
+/home/markovschains/LearnOpenGL/CMakeFiles/glad.dir
+/home/markovschains/LearnOpenGL/CMakeFiles/LearnOpenGL.dir
+/home/markovschains/LearnOpenGL/CMakeFiles/edit_cache.dir
+/home/markovschains/LearnOpenGL/CMakeFiles/rebuild_cache.dir

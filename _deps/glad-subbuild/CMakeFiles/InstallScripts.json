@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/markovschains/LearnOpenGL/_deps/glad-subbuild/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

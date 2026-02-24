@@ -1,21 +1,31 @@
 cmake_minimum_required(VERSION 3.16)
-project(untitled)
+project(LearnOpenGL LANGUAGES C CXX)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 14)
 
+# GLAD
+set(GLAD_DIR "${CMAKE_SOURCE_DIR}/glad")
+add_library(glad "${GLAD_DIR}/src/glad.c")
+target_include_directories(glad PUBLIC "${GLAD_DIR}/include")
+
+# Source files
 file(GLOB_RECURSE SRC_FILES
     "${CMAKE_SOURCE_DIR}/src/*.cpp"
 )
 
-add_executable(untitled ${SRC_FILES})
+add_executable(LearnOpenGL ${SRC_FILES})
 
-include_directories("${CMAKE_SOURCE_DIR}/include")
-
-link_directories("${CMAKE_SOURCE_DIR}/lib")
-
-file(GLOB PROJECT_LIBS
-    "${CMAKE_SOURCE_DIR}/lib/*.a"
-    "${CMAKE_SOURCE_DIR}/lib/*.dylib"
+target_include_directories(LearnOpenGL PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
 )
 
-target_link_libraries(untitled PRIVATE ${PROJECT_LIBS})
+# Dependencies
+find_package(OpenGL REQUIRED)
+find_package(glfw3 REQUIRED)
+
+target_link_libraries(LearnOpenGL
+    PRIVATE
+    glad
+    glfw
+    OpenGL::GL
+)
