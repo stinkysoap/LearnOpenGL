@@ -1,6 +1,18 @@
 cmake_minimum_required(VERSION 3.16)
 project(LearnOpenGL LANGUAGES C CXX)
+if(WIN32)
+    message(STATUS "Building on Windows")
 
+    if(MSVC)
+        message(STATUS "Compiler: MSVC")
+    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+        message(STATUS "Compiler: Clang")
+    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        message(STATUS "Compiler: MinGW/GCC")
+    else()
+        message(WARNING "Unknown Windows compiler: ${CMAKE_CXX_COMPILER_ID}")
+    endif()
+endif()
 set(CMAKE_CXX_STANDARD 14)
 
 # GLAD
