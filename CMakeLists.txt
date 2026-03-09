@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
 project(LearnOpenGL LANGUAGES C CXX)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 if(WIN32)
     message(STATUS "Building on Windows")
 
@@ -13,6 +16,7 @@ if(WIN32)
         message(WARNING "Unknown Windows compiler: ${CMAKE_CXX_COMPILER_ID}")
     endif()
 endif()
+
 set(CMAKE_CXX_STANDARD 14)
 
 # GLAD
