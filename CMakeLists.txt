@@ -25,7 +25,7 @@ add_library(glad "${GLAD_DIR}/src/glad.c")
 target_include_directories(glad PUBLIC "${GLAD_DIR}/include")
 
 # Source files
-file(GLOB_RECURSE SRC_FILES
+file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS
     "${CMAKE_SOURCE_DIR}/src/*.cpp"
 )
 
@@ -33,6 +33,11 @@ add_executable(LearnOpenGL ${SRC_FILES})
 
 target_include_directories(LearnOpenGL PRIVATE
     ${CMAKE_SOURCE_DIR}/include
+)
+
+# Allow loading assets (shaders) regardless of the runtime working directory.
+target_compile_definitions(LearnOpenGL PRIVATE
+    LEARNOPENGL_SOURCE_DIR="${CMAKE_SOURCE_DIR}"
 )
 
 # Dependencies

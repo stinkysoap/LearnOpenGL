@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include <GLFW/glfw3.h>
+void render_loop();
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 void processInput(GLFWwindow *window);
@@ -30,9 +31,7 @@ int main() {
     // input
     processInput(window);
     // rendering commands here
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
+    render_loop();
     // check and call events and swap buffers
     glfwSwapBuffers(window);
     glfwPollEvents();
