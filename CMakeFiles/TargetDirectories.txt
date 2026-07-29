@@ -1,4 +1,0 @@
-/home/m/LearnOpenGl/CMakeFiles/glad.dir
-/home/m/LearnOpenGl/CMakeFiles/LearnOpenGL.dir
-/home/m/LearnOpenGl/CMakeFiles/edit_cache.dir
-/home/m/LearnOpenGl/CMakeFiles/rebuild_cache.dir
