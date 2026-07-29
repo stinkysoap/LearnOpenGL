@@ -8,7 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/markovschains/LearnOpenGL/src/main.cpp" "CMakeFiles/LearnOpenGL.dir/src/main.cpp.o" "gcc" "CMakeFiles/LearnOpenGL.dir/src/main.cpp.o.d"
+  "/home/m/LearnOpenGl/src/main.cpp" "CMakeFiles/LearnOpenGL.dir/src/main.cpp.o" "gcc" "CMakeFiles/LearnOpenGL.dir/src/main.cpp.o.d"
+  "/home/m/LearnOpenGl/src/renderloop.cpp" "CMakeFiles/LearnOpenGL.dir/src/renderloop.cpp.o" "gcc" "CMakeFiles/LearnOpenGL.dir/src/renderloop.cpp.o.d"
+  "/home/m/LearnOpenGl/src/shader_utils.cpp" "CMakeFiles/LearnOpenGL.dir/src/shader_utils.cpp.o" "gcc" "CMakeFiles/LearnOpenGL.dir/src/shader_utils.cpp.o.d"
   "" "LearnOpenGL" "gcc" "CMakeFiles/LearnOpenGL.dir/link.d"
   )
 

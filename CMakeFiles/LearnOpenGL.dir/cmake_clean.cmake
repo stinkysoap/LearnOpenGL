@@ -2,6 +2,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/LearnOpenGL.dir/link.d"
   "CMakeFiles/LearnOpenGL.dir/src/main.cpp.o"
   "CMakeFiles/LearnOpenGL.dir/src/main.cpp.o.d"
+  "CMakeFiles/LearnOpenGL.dir/src/renderloop.cpp.o"
+  "CMakeFiles/LearnOpenGL.dir/src/renderloop.cpp.o.d"
+  "CMakeFiles/LearnOpenGL.dir/src/shader_utils.cpp.o"
+  "CMakeFiles/LearnOpenGL.dir/src/shader_utils.cpp.o.d"
   "LearnOpenGL"
   "LearnOpenGL.pdb"
 )

@@ -1,7 +1,7 @@
 {
 	"InstallScripts" : 
 	[
-		"/home/markovschains/LearnOpenGL/cmake_install.cmake"
+		"/home/m/LearnOpenGl/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

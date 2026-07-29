@@ -1,1 +1,26 @@
-build/compile_commands.json
+[
+{
+  "directory": "/home/m/LearnOpenGl",
+  "command": "/usr/bin/cc  -I/home/m/LearnOpenGl/glad/include  -o CMakeFiles/glad.dir/glad/src/glad.c.o -c /home/m/LearnOpenGl/glad/src/glad.c",
+  "file": "/home/m/LearnOpenGl/glad/src/glad.c",
+  "output": "CMakeFiles/glad.dir/glad/src/glad.c.o"
+},
+{
+  "directory": "/home/m/LearnOpenGl",
+  "command": "/usr/bin/c++ -DLEARNOPENGL_SOURCE_DIR=\\\"/home/m/LearnOpenGl\\\" -I/home/m/LearnOpenGl/include -I/home/m/LearnOpenGl/glad/include -std=gnu++14 -o CMakeFiles/LearnOpenGL.dir/src/main.cpp.o -c /home/m/LearnOpenGl/src/main.cpp",
+  "file": "/home/m/LearnOpenGl/src/main.cpp",
+  "output": "CMakeFiles/LearnOpenGL.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/m/LearnOpenGl",
+  "command": "/usr/bin/c++ -DLEARNOPENGL_SOURCE_DIR=\\\"/home/m/LearnOpenGl\\\" -I/home/m/LearnOpenGl/include -I/home/m/LearnOpenGl/glad/include -std=gnu++14 -o CMakeFiles/LearnOpenGL.dir/src/renderloop.cpp.o -c /home/m/LearnOpenGl/src/renderloop.cpp",
+  "file": "/home/m/LearnOpenGl/src/renderloop.cpp",
+  "output": "CMakeFiles/LearnOpenGL.dir/src/renderloop.cpp.o"
+},
+{
+  "directory": "/home/m/LearnOpenGl",
+  "command": "/usr/bin/c++ -DLEARNOPENGL_SOURCE_DIR=\\\"/home/m/LearnOpenGl\\\" -I/home/m/LearnOpenGl/include -I/home/m/LearnOpenGl/glad/include -std=gnu++14 -o CMakeFiles/LearnOpenGL.dir/src/shader_utils.cpp.o -c /home/m/LearnOpenGl/src/shader_utils.cpp",
+  "file": "/home/m/LearnOpenGl/src/shader_utils.cpp",
+  "output": "CMakeFiles/LearnOpenGL.dir/src/shader_utils.cpp.o"
+}
+]
