@@ -5,6 +5,13 @@
 #include "shader_utils.h"
 #include <GLFW/glfw3.h>
 
+const char *fragmentShaderSource =
+    "#version 330 core\n"
+    "out vec4 FragColor;\n"
+    "void main()\n"
+    "{\n"
+    "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+    "}\n\0";
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
 int main() {
@@ -33,46 +40,50 @@ int main() {
   glfwSetFramebufferSizeCallback(
       window, (GLFWframebuffersizefun)framebuffer_size_callback);
 
-  const GLuint shader_program = shader_utils::create_program_from_files(
-      "src/vertex_shader.glsl", "src/fragment_shader.glsl");
-  if (shader_program == 0) {
-    glfwDestroyWindow(window);
-    glfwTerminate();
-    return -1;
-  }
-
   float vertices[] = {
       -0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f,
   };
 
-  GLuint vao = 0;
   GLuint vbo = 0;
-  glGenVertexArrays(1, &vao);
   glGenBuffers(1, &vbo);
 
-  glBindVertexArray(vao);
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
   glEnableVertexAttribArray(0);
-  glBindVertexArray(0);
 
+  const char *vertexShaderSource =
+      "#version 330 core\n"
+      "layout (location = 0) in vec3 aPos;\n"
+      "void main()\n"
+      "{\n"
+      "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+      "}\0";
+  GLuint vertexShader;
+  vertexShader = glCreateShader(GL_VERTEX_SHADER);
+  glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+  glCompileShader(vertexShader);
+
+  GLuint fragmentShader;
+  glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+  glCompileShader(fragmentShader);
+
+  GLuint ShaderProgram;
+  ShaderProgram = glCreateProgram();
+  glAttachShader(ShaderProgram, vertexShader);
+  glAttachShader(ShaderProgram, fragmentShader);
+  glLinkProgram(ShaderProgram);
   while (!glfwWindowShouldClose(window)) {
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glUseProgram(shader_program);
-    glBindVertexArray(vao);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
-    glBindVertexArray(0);
-
+    glUseProgram(ShaderProgram);
     glfwSwapBuffers(window);
     glfwPollEvents();
   }
-
-  glDeleteVertexArrays(1, &vao);
+  glDeleteShader(vertexShader);
+  glDeleteShader(fragmentShader);
   glDeleteBuffers(1, &vbo);
-  glDeleteProgram(shader_program);
   glfwDestroyWindow(window);
   glfwTerminate();
   return 0;
