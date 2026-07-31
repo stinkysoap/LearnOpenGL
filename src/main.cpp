@@ -4,14 +4,19 @@
 
 #include "shader_utils.h"
 #include <GLFW/glfw3.h>
+const char *fragmentShaderSource = R"(
+#version 330 core
 
-const char *fragmentShaderSource =
-    "#version 330 core\n"
-    "out vec4 FragColor;\n"
-    "void main()\n"
-    "{\n"
-    "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-    "}\n\0";
+out vec4 FragColor;
+
+void main()
+{
+    // Normalize screen coordinates (assuming an 800x600 window)
+    vec2 uv = gl_FragCoord.xy / vec2(800.0, 600.0);
+
+    FragColor = vec4(uv.x, uv.y, 0.5, 1.0);
+}
+)";
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
 int main() {
@@ -45,7 +50,11 @@ int main() {
   };
 
   GLuint vbo = 0;
+  GLuint vao = 0;
+  glGenVertexArrays(1, &vao);
   glGenBuffers(1, &vbo);
+
+  glBindVertexArray(vao);
 
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
@@ -65,6 +74,7 @@ int main() {
   glCompileShader(vertexShader);
 
   GLuint fragmentShader;
+  fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
   glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
   glCompileShader(fragmentShader);
 
@@ -78,6 +88,8 @@ int main() {
     glClear(GL_COLOR_BUFFER_BIT);
 
     glUseProgram(ShaderProgram);
+    glBindVertexArray(vao);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
     glfwSwapBuffers(window);
     glfwPollEvents();
   }
