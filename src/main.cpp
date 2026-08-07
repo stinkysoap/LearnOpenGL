@@ -2,21 +2,28 @@
 
 #include <iostream>
 
-#include "shader_utils.h"
 #include <GLFW/glfw3.h>
 const char *fragmentShaderSource = R"(
 #version 330 core
-
-out vec4 FragColor;
+out vec4 FragColor;  
+in vec3 ourColor;
+  
+void main()
+{
+    FragColor = vec4(ourColor, 1.0);
+}
+)";
+const char *vertexShaderSource = R"(#version 330 core
+layout (location = 0) in vec3 aPos;   // the position variable has attribute position 0
+layout (location = 1) in vec3 aColor; // the color variable has attribute position 1
+  
+out vec3 ourColor; // output a color to the fragment shader
 
 void main()
 {
-    // Normalize screen coordinates (assuming an 800x600 window)
-    vec2 uv = gl_FragCoord.xy / vec2(800.0, 600.0);
-
-    FragColor = vec4(uv.x, uv.y, 0.5, 1.0);
-}
-)";
+    gl_Position = vec4(aPos, 1.0);
+    ourColor = aColor; // set ourColor to the input color we got from the vertex data
+})";
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
 int main() {
@@ -46,7 +53,10 @@ int main() {
       window, (GLFWframebuffersizefun)framebuffer_size_callback);
 
   float vertices[] = {
-      -0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f,
+      // positions         // colors
+      0.5f,  -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // bottom right
+      -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // bottom left
+      0.0f,  0.5f,  0.0f, 0.0f, 0.0f, 1.0f  // top
   };
 
   GLuint vbo = 0;
@@ -58,16 +68,10 @@ int main() {
 
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
   glEnableVertexAttribArray(0);
-
-  const char *vertexShaderSource =
-      "#version 330 core\n"
-      "layout (location = 0) in vec3 aPos;\n"
-      "void main()\n"
-      "{\n"
-      "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-      "}\0";
+  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
+  glEnableVertexAttribArray(1);
   GLuint vertexShader;
   vertexShader = glCreateShader(GL_VERTEX_SHADER);
   glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -83,6 +87,9 @@ int main() {
   glAttachShader(ShaderProgram, vertexShader);
   glAttachShader(ShaderProgram, fragmentShader);
   glLinkProgram(ShaderProgram);
+
+  glUseProgram(ShaderProgram);
+
   while (!glfwWindowShouldClose(window)) {
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
